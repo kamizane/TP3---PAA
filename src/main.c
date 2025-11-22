@@ -2,7 +2,7 @@
 
 #include "entrada.c"
 #include "criptografar.c"
-#include "../include/TAD_Criptografia.h"
+#include "TAD_Criptografia.c"
 
 void menu();
 
