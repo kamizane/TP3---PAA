@@ -8,7 +8,9 @@ void cifraDeDeslocamento(char *texto) {
     int chave = gerarNmrAleatorio(0,25);
     for (int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
-
+        if(texto[i] == '.' || texto[i] == 'n' || texto[i] == '"' || texto[i] == ' '){
+            continue;
+        }
         if (c >= 'a' && c <= 'z') {
             texto[i] = ((c - 'a' + chave) % 26) + 'a';
         }
