@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-int casamento_exato(char texto[],char padrao[]) {
+void casamento_exato(char texto[],char padrao[], float * frequencia, int * contador) {
     int n = strlen(texto);
     int m = strlen(padrao);
-    int contador = 0;
     for (int i = 0; i <= n - m; i++) {
         int j = 0;
         while (j < m && texto[i + j] == padrao[j]) {
             j++;
         }
         if (j == m) {
-            contador++;
+            *contador +=1;
         }
     }
-
-    return contador;
+    float aux = (*contador);
+    *frequencia = ((aux) / n) * 100;
 }

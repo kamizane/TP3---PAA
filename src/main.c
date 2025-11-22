@@ -42,8 +42,10 @@ void menu(){
         case 3:{
             criptografia teste2;
             inicializaChaves(&teste2);
-            int resultado = casamento_exato("CASA","A");
-            printf("Ocorrencias: %d\n", resultado); 
+            int contador =0; float frequencia =0;
+            casamento_exato("CASA","A",&frequencia, &contador);
+            printf("Ocorrencias: %d\n", contador); 
+            printf("Frequencia: %.2f%%\n", frequencia); 
             break;
         };
         case 4:
