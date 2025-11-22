@@ -13,4 +13,6 @@ typedef struct{
 }criptografia;
 
 void inicializaChaves(criptografia * cripto);
+void cifraDeDeslocamento(char *texto);
+int gerarNmrAleatorio(int min, int max);
 #endif
