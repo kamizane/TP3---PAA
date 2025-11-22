@@ -24,4 +24,6 @@ void lerEntrada(){
             break;
         }
     }
+    
+
 }

@@ -1,6 +1,9 @@
 #include <stdio.h>
 
 #include "entrada.c"
+#include "criptografar.c"
+#include "../include/TAD_Criptografia.h"
+
 void menu();
 
 int main(){
@@ -9,6 +12,11 @@ int main(){
 
 void menu(){
     lerEntrada();
+    char teste[] = "teste";
+    cifraDeDeslocamento(teste);
+    for(int i=0; i<5;i++){
+        printf("%c", teste[i]);
+    }
     int flag = 1;
     while(flag){
         printf("--------------------MENU--------------------\n");
@@ -23,8 +31,11 @@ void menu(){
         int opcao;
         scanf("%d", &opcao);
         switch (opcao){
-        case 1:
+        case 1:{
+            criptografia teste;
+            inicializaChaves(&teste);
             break;
+            };
         case 2:
             break;
         case 3:
