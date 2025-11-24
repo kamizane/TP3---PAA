@@ -53,8 +53,6 @@ void menu(){
         case 5:
             break;
         case 6:
-            break;
-        case 0:
             printf("Exportanto resultados e fechando programa...\n");
             return;
         
