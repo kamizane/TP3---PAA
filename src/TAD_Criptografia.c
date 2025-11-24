@@ -3,9 +3,9 @@
 #include "../include/TAD_Criptografia.h"
 
 void inicializaChaves(criptografia * cripto){
-    char letraEmNumero = 97;
+    char letraEmNumero = 65;
     for (int i=0; i<26; i++){
-        cripto->Chaves.normal[i] = 97;
+        cripto->Chaves.normal[i] = letraEmNumero;
         cripto->Chaves.cifra[i] = ' ';
         letraEmNumero++;
     }
@@ -14,8 +14,10 @@ void inicializaChaves(criptografia * cripto){
     for (int i=0; i<26; i++){
     printf("%c ", cripto->Chaves.normal[i]);
     }
-
+    printf("\n");
     for (int i=0; i<26; i++){
     printf("%c ", cripto->Chaves.cifra[i]);
     }
+    printf("\n");
+
 }
