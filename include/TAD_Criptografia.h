@@ -10,7 +10,12 @@ typedef struct{
     chave Chaves;
     char * claro;
     char * criptografado;
+    char * parcial;
 }criptografia;
 
-void inicializaChaves(criptografia * cripto);
+void inicializaChaves(criptografia * cripto, char * texto);
+void imprimeClaro(criptografia * cripto);
+void imprimeParcial(criptografia * cripto);
+void imprimeCriptografado(criptografia * cripto);
+void imprimeChaves(criptografia * cripto);
 #endif
