@@ -3,6 +3,7 @@
 #include "entrada.c"
 #include "criptografar.c"
 #include "../include/TAD_Criptografia.h"
+#include "busca_encripto.c"
 
 void menu();
 
@@ -38,8 +39,15 @@ void menu(){
             };
         case 2:
             break;
-        case 3:
+        case 3:{
+            criptografia teste2;
+            inicializaChaves(&teste2);
+            int contador =0; float frequencia =0;
+            casamento_exato("CASA","A",&frequencia, &contador);
+            printf("Ocorrencias: %d\n", contador); 
+            printf("Frequencia: %.2f%%\n", frequencia); 
             break;
+        };
         case 4:
             break;
         case 0:
