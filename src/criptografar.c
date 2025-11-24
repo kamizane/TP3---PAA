@@ -1,10 +1,13 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 int gerarNmrAleatorio(int min, int max){
     if(min == max) return min;
     return (rand() % (max - min + 1)) + min;
 }
 
 void cifraDeDeslocamento(char *texto) {
+    srand(time(NULL));
     int chave = gerarNmrAleatorio(0,25);
     for (int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
@@ -17,4 +20,5 @@ void cifraDeDeslocamento(char *texto) {
         else if (c >= 'A' && c <= 'Z'){
             texto[i] = ((c - 'A' + chave) % 26) + 'A';
         }    }
+    
 }

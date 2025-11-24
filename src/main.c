@@ -1,23 +1,21 @@
 #include <stdio.h>
-
+#include <string.h>
 #include "entrada.c"
-#include "criptografar.c"
 #include "../include/TAD_Criptografia.h"
 #include "busca_encripto.c"
 
 void menu();
+char * lerDoTeclado();
 
 int main(){
     menu();
 }
 
 void menu(){
-    lerEntrada();
-    char teste[] = "teste";
-    cifraDeDeslocamento(teste);
-    for(int i=0; i<5;i++){
-        printf("%c", teste[i]);
-    }
+    char * texto = lerEntrada();
+    removeAcentoseMaiusculas(texto);
+    criptografia teste;
+    inicializaChaves(&teste, texto);
     int flag = 1;
     while(flag){
         printf("--------------------MENU--------------------\n");
@@ -31,10 +29,16 @@ void menu(){
         printf("Escolha uma opcao acima:\n");
         int opcao;
         scanf("%d", &opcao);
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);//limpando o buffer
+
+
         switch (opcao){
         case 1:{
-            criptografia teste;
-            inicializaChaves(&teste);
+            imprimeCriptografado(&teste);
+            imprimeChaves(&teste);
+            imprimeParcial(&teste);
             break;
             };
         case 2:{
@@ -47,10 +51,10 @@ void menu(){
             break;
         }
         case 3:{
-            criptografia teste2;
-            inicializaChaves(&teste2);
+            printf("Qual o padrao utilizado?\n> ");
+            char * padrao = lerDoTeclado();
             int contador =0; float frequencia =0;
-            casamento_exato("CASA","A",&frequencia, &contador);
+            casamento_exato(teste.criptografado, padrao, &frequencia, &contador);
             printf("Ocorrencias: %d\n", contador); 
             printf("Frequencia: %.2f%%\n", frequencia); 
             break;
@@ -68,4 +72,25 @@ void menu(){
             break;
         }
     }
+}
+
+
+
+char * lerDoTeclado() {
+    char buffer[1000];
+
+    if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+        return NULL; 
+    }
+
+    buffer[strcspn(buffer, "\n")] = '\0';
+
+    char *texto = malloc(strlen(buffer) + 1);
+    if (texto == NULL) {
+        printf("Erro ao alocar memória.\n");
+        return NULL;
+    }
+
+    strcpy(texto, buffer);
+    return texto;
 }
