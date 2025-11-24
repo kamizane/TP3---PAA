@@ -36,8 +36,15 @@ void menu(){
             inicializaChaves(&teste);
             break;
             };
-        case 2:
+        case 2:{
+            char* texto = NULL;
+            texto = lerEntrada();
+            printf("Texto: %s\n", texto);
+            removeAcentoseMaiusculas(texto);
+            printf("Texto: %s\n", texto);
+            filtrarApenasLetras(texto);
             break;
+        }
         case 3:
             break;
         case 4:
