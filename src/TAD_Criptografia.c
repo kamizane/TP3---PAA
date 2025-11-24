@@ -24,6 +24,8 @@ void inicializaChaves(criptografia * cripto, char * texto){
         cripto->claro[i] = texto[i];
     }
     char * string = texto;
+
+    //Encriptografa o texto lido
     cifraDeDeslocamento(string);
     cripto->criptografado = string;
     cripto->parcial = string;
