@@ -71,12 +71,8 @@ void imprimeChaves(criptografia * cripto){
     printf("\n");
     printf("\n");
 }
-void alterarChave(criptografia *cripto) {
-    char original, encriptada;
-
-    printf("Informe a letra original e a letra para a qual foi mapeada (ex: A S):\n> ");
-    scanf(" %c %c", &original, &encriptada);
-
+void alterarChave(criptografia *cripto, char original, char encriptada) {
+    
     original = toupper(original);
     encriptada = toupper(encriptada);
 

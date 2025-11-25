@@ -14,6 +14,7 @@ int main(){
 
 void menu(){
     char * texto = lerEntrada();
+    char original, encriptada;
     removeAcentoseMaiusculas(texto);
     criptografia teste;
     inicializaChaves(&teste, texto);
@@ -63,7 +64,9 @@ void menu(){
         case 4:
             break;
         case 5:
-            alterarChave(&teste);
+            printf("Informe a letra original e a letra para a qual foi mapeada (ex: A S):\n> ");
+            scanf(" %c %c", &original, &encriptada);
+            alterarChave(&teste, original, encriptada);
             break;
         case 6:
             printf("Exportanto resultados e fechando programa...\n");
