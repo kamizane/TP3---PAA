@@ -3,6 +3,7 @@
 #include "entrada.c"
 #include "../include/TAD_Criptografia.h"
 #include "busca_encripto.c"
+#include "../include/TAD_frequencia.h"
 
 void menu();
 char * lerDoTeclado();
@@ -42,12 +43,12 @@ void menu(){
             break;
             };
         case 2:{
-            char* texto = NULL;
+           char* texto = NULL;
             texto = lerEntrada();
             printf("Texto: %s\n", texto);
             removeAcentoseMaiusculas(texto);
-            printf("Texto: %s\n", texto);
-            filtrarApenasLetras(texto);
+            ListaFrequencia lista[27];
+            executaFrequencia(lista, texto);
             break;
         }
         case 3:{
