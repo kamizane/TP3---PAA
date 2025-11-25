@@ -63,6 +63,7 @@ void menu(){
         case 4:
             break;
         case 5:
+            alterarChave(&teste);
             break;
         case 6:
             printf("Exportanto resultados e fechando programa...\n");
