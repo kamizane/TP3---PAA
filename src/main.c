@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "entrada.c"
+#include "../include/entrada.h"
 #include "../include/TAD_Criptografia.h"
 #include "../include/TAD_frequencia.h"
 
@@ -13,11 +13,13 @@ int main(){
 }
 
 void menu(){
-    char * texto = lerEntrada();
+    //faz a leitura e utiliza o arquivo especificado ao grupo
+    char * texto = lerEntrada(1);
     char original, encriptada;
     removeAcentoseMaiusculas(texto);
     criptografia teste;
     inicializaChaves(&teste, texto);
+
     int flag = 1;
     while(flag){
         printf("\033[33m--------------------MENU--------------------\033[0m\n");
@@ -45,7 +47,7 @@ void menu(){
             };
         case 2:{
            char* texto = NULL;
-            texto = lerEntrada();
+            texto = lerEntrada(0);
             printf("Texto: %s\n", texto);
             removeAcentoseMaiusculas(texto);
             ListaFrequencia lista[27];
