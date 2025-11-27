@@ -8,7 +8,7 @@ int gerarNmrAleatorio(int min, int max){
 
 void cifraDeDeslocamento(char *texto) {
     srand(time(NULL));
-    int chave = gerarNmrAleatorio(0,25);
+    int chave = gerarNmrAleatorio(1,25);
     for (int i = 0; texto[i] != '\0'; i++) {
         char c = texto[i];
         if(texto[i] == '.' || texto[i] == 'n' || texto[i] == '"' || texto[i] == ' '){

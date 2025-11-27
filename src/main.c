@@ -62,6 +62,8 @@ void menu(){
             break;
         };
         case 4:
+            teste.parcial[0] = ';';
+            printf("%c", teste.criptografado[0]);
             break;
         case 5:
             printf("Informe a letra original e a letra para a qual foi mapeada (ex: A S):\n> ");
@@ -70,6 +72,7 @@ void menu(){
             break;
         case 6:
             printf("Exportanto resultados e fechando programa...\n");
+            flag =0;
             return;
         
         default:
