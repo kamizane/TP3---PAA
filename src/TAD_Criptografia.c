@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../include/TAD_Criptografia.h"
 #include "criptografar.c"
 
@@ -9,7 +10,7 @@ void inicializaChaves(criptografia * cripto, char * texto){
     //Inicializas as duas chaves, a normal contém o alfabeto a cifra está 'vazia'
     for (int i=0; i<26; i++){
         cripto->Chaves.normal[i] = letraEmNumero;
-        cripto->Chaves.cifra[i] = '?';
+        cripto->Chaves.cifra[i] = ' ';
         letraEmNumero++;
     }
 
@@ -27,8 +28,9 @@ void inicializaChaves(criptografia * cripto, char * texto){
 
     //Encriptografa o texto lido
     cifraDeDeslocamento(string);
-    cripto->criptografado = string;
-    cripto->parcial = string;
+    strcpy(cripto->criptografado,string);
+    strcpy(cripto->parcial,string);
+
 
 
 }
@@ -54,7 +56,13 @@ void imprimeParcial(criptografia * cripto){
     printf("=== Texto parcialmente decifrado ===\n");
     int aux = strlen(cripto->parcial);
     for(int i=0; i<aux; i++){
-        printf("%c",cripto->parcial[i]);
+        if(cripto->parcial[i] != cripto->criptografado[i]){
+            printf("\033[32m%c\033[0m",cripto->parcial[i]);
+        }
+        else{
+            printf("\033[31m%c\033[0m",cripto->parcial[i]);
+        }
+
     }
     printf("\n");
     printf("\n");
@@ -71,6 +79,8 @@ void imprimeChaves(criptografia * cripto){
     printf("\n");
     printf("\n");
 }
+
+
 void alterarChave(criptografia *cripto, char original, char encriptada) {
     
     original = toupper(original);
@@ -89,3 +99,4 @@ void alterarChave(criptografia *cripto, char original, char encriptada) {
         }
     }
 }
+
