@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "tad_criptografia.h": "c"
+        "tad_criptografia.h": "c",
+        "cctype": "c"
     }
 }
