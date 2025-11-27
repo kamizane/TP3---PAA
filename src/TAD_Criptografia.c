@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
 #include "../include/TAD_Criptografia.h"
-#include "criptografar.c"
 
 void inicializaChaves(criptografia * cripto, char * texto){
     char letraEmNumero = 65;
@@ -44,7 +44,8 @@ void imprimeClaro(criptografia * cripto){
 
 
 void imprimeCriptografado(criptografia * cripto){
-    printf("=== Texto criptografado ===\n");
+    printf("\n");
+    printf("\033[34m=== Texto criptografado ===\033[0m\n");
     int aux = strlen(cripto->criptografado);
     for(int i=0; i<aux; i++){
         printf("%c",cripto->criptografado[i]);
@@ -53,7 +54,7 @@ void imprimeCriptografado(criptografia * cripto){
     printf("\n");
 }
 void imprimeParcial(criptografia * cripto){
-    printf("=== Texto parcialmente decifrado ===\n");
+    printf("\033[34m=== Texto parcialmente decifrado ===\033[0m\n");
     int aux = strlen(cripto->parcial);
     for(int i=0; i<aux; i++){
         if(cripto->parcial[i] != cripto->criptografado[i]){
@@ -68,7 +69,7 @@ void imprimeParcial(criptografia * cripto){
     printf("\n");
 }
 void imprimeChaves(criptografia * cripto){
-    printf("=== Chave ===\n");
+    printf("\033[34m=== Chave ===\033[0m\n");
     for(int i=0; i<26; i++){
         printf("%c",cripto->Chaves.normal[i]);
     }

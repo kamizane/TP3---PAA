@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-#include "entrada.c"
+#include "../include/entrada.h"
 #include "../include/TAD_Criptografia.h"
-#include "busca_encripto.c"
 #include "../include/TAD_frequencia.h"
+
 
 void menu();
 char * lerDoTeclado();
@@ -13,22 +13,24 @@ int main(){
 }
 
 void menu(){
-    char * texto = lerEntrada();
+    //faz a leitura e utiliza o arquivo especificado ao grupo
+    char * texto = lerEntrada(1);
     char original, encriptada;
     removeAcentoseMaiusculas(texto);
     criptografia teste;
     inicializaChaves(&teste, texto);
+
     int flag = 1;
     while(flag){
-        printf("--------------------MENU--------------------\n");
-        printf("1- Apresentar o estado atual da criptografia\n");
-        printf("2- Fazer um chute baseado na analise de frequencia no texto encriptografado\n");
-        printf("3- Realizar casamento exato de caracteres no texto encriptografado\n");
-        printf("4- Realizar casamento aproximado de caracteres no texto parcialmente decifrado\n");
-        printf("5 - Alterar chave de criptografia\n");
-        printf("6- Exportar resultado e encerrar o programa\n");
+        printf("\033[33m--------------------MENU--------------------\033[0m\n");
+        printf("\033[33m1\033[0m - Apresentar o estado atual da criptografia\n");
+        printf("\033[33m2\033[0m - Fazer um chute baseado na analise de frequencia no texto encriptografado\n");
+        printf("\033[33m3\033[0m - Realizar casamento exato de caracteres no texto encriptografado\n");
+        printf("\033[33m4\033[0m - Realizar casamento aproximado de caracteres no texto parcialmente decifrado\n");
+        printf("\033[33m5\033[0m - Alterar chave de criptografia\n");
+        printf("\033[33m6\033[0m - Exportar resultado e encerrar o programa\n");
 
-        printf("Escolha uma opcao acima:\n");
+        printf("Escolha uma opcao acima: ");
         int opcao;
         scanf("%d", &opcao);
 
@@ -45,7 +47,7 @@ void menu(){
             };
         case 2:{
            char* texto = NULL;
-            texto = lerEntrada();
+            texto = lerEntrada(0);
             printf("Texto: %s\n", texto);
             removeAcentoseMaiusculas(texto);
             ListaFrequencia lista[27];
@@ -57,8 +59,8 @@ void menu(){
             char * padrao = lerDoTeclado();
             int contador =0; float frequencia =0;
             casamento_exato(teste.criptografado, padrao, &frequencia, &contador);
-            printf("Ocorrencias: %d\n", contador); 
-            printf("Frequencia: %.2f%%\n", frequencia); 
+            printf("Ocorrencia total: %d\n", contador); 
+            printf("Frequencia (quantidade de letras): %.2f%%\n", frequencia); 
             break;
         };
         case 4:

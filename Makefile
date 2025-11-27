@@ -4,7 +4,9 @@ BUILD = build
 
 SRC = src/main.c \
       src/TAD_Criptografia.c\
-	  src/TAD_frequencia.c
+	  src/TAD_frequencia.c\
+	  src/processador_cripto.c\
+	  src/entrada.c
 
 OBJ = $(SRC:src/%.c=$(BUILD)/%.o)
 
