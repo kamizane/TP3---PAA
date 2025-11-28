@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "../include/TAD_entrada.h"
 
 char* lerEntrada() {
     FILE *file;
@@ -136,4 +137,51 @@ void filtrarApenasLetras(char* str) {
         }
         i++;
     }
+}
+
+#include <dirent.h>
+
+char* folder_to_string(const char *path) {
+    DIR *d = opendir(path);
+    if (!d) return NULL; // Retorna NULL se não achar a pasta
+
+    struct dirent *dir;
+    char *result = malloc(1); // Começa vazia
+    if (!result) { closedir(d); return NULL; }
+    
+    result[0] = '\0';
+    size_t total_len = 0;
+
+    while ((dir = readdir(d)) != NULL) {
+        // Filtra: Pula pastas ocultas e garante que seja .txt
+        if (dir->d_name[0] == '.') continue;
+        if (!strstr(dir->d_name, ".txt")) continue;
+
+        // Monta o caminho completo do arquivo
+        char full_path[1024];
+        snprintf(full_path, sizeof(full_path), "%s/%s", path, dir->d_name);
+
+        FILE *f = fopen(full_path, "rb");
+        if (f) {
+            fseek(f, 0, SEEK_END);
+            long fsize = ftell(f);
+            fseek(f, 0, SEEK_SET);
+
+            // Realoca memória: tamanho atual + tamanho novo + 1 (newline) + 1 (null terminator)
+            char *temp = realloc(result, total_len + fsize + 2);
+            if (temp) {
+                result = temp;
+                fread(result + total_len, 1, fsize, f); // Lê direto para o final da string
+                total_len += fsize;
+                
+                // Opcional: Adiciona quebra de linha entre arquivos
+                result[total_len] = '\n';
+                total_len++;
+                result[total_len] = '\0'; // Fecha a string
+            }
+            fclose(f);
+        }
+    }
+    closedir(d);
+    return result;
 }
