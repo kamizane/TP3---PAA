@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../include/TAD_Criptografia.h"
 #include "../include/criptografar.h"
 
@@ -9,7 +10,7 @@ void inicializaChaves(criptografia * cripto, char * texto){
     //Inicializas as duas chaves, a normal contém o alfabeto a cifra está 'vazia'
     for (int i=0; i<26; i++){
         cripto->Chaves.normal[i] = letraEmNumero;
-        cripto->Chaves.cifra[i] = '?';
+        cripto->Chaves.cifra[i] = ' ';
         letraEmNumero++;
     }
 
@@ -27,8 +28,9 @@ void inicializaChaves(criptografia * cripto, char * texto){
 
     //Encriptografa o texto lido
     cifraDeDeslocamento(string);
-    cripto->criptografado = string;
-    cripto->parcial = string;
+    strcpy(cripto->criptografado,string);
+    strcpy(cripto->parcial,string);
+
 
 
 }
@@ -42,7 +44,8 @@ void imprimeClaro(criptografia * cripto){
 
 
 void imprimeCriptografado(criptografia * cripto){
-    printf("=== Texto criptografado ===\n");
+    printf("\n");
+    printf("\033[34m=== Texto criptografado ===\033[0m\n");
     int aux = strlen(cripto->criptografado);
     for(int i=0; i<aux; i++){
         printf("%c",cripto->criptografado[i]);
@@ -51,16 +54,22 @@ void imprimeCriptografado(criptografia * cripto){
     printf("\n");
 }
 void imprimeParcial(criptografia * cripto){
-    printf("=== Texto parcialmente decifrado ===\n");
+    printf("\033[34m=== Texto parcialmente decifrado ===\033[0m\n");
     int aux = strlen(cripto->parcial);
     for(int i=0; i<aux; i++){
-        printf("%c",cripto->parcial[i]);
+        if(cripto->parcial[i] != cripto->criptografado[i]){
+            printf("\033[32m%c\033[0m",cripto->parcial[i]);
+        }
+        else{
+            printf("\033[31m%c\033[0m",cripto->parcial[i]);
+        }
+
     }
     printf("\n");
     printf("\n");
 }
 void imprimeChaves(criptografia * cripto){
-    printf("=== Chave ===\n");
+    printf("\033[34m=== Chave ===\033[0m\n");
     for(int i=0; i<26; i++){
         printf("%c",cripto->Chaves.normal[i]);
     }
@@ -71,3 +80,24 @@ void imprimeChaves(criptografia * cripto){
     printf("\n");
     printf("\n");
 }
+
+
+void alterarChave(criptografia *cripto, char original, char encriptada) {
+    
+    original = toupper(original);
+    encriptada = toupper(encriptada);
+
+    int idx = original - 'A';
+    cripto->Chaves.cifra[idx] = encriptada;
+
+    printf("Registrado: %c -> %c\n\n", original, encriptada);
+
+    int n = strlen(cripto->criptografado);
+
+    for (int i = 0; i < n; i++) {
+        if (cripto->criptografado[i] == encriptada) {
+            cripto->parcial[i] = original;
+        }
+    }
+}
+

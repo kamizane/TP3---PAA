@@ -18,4 +18,5 @@ void imprimeClaro(criptografia * cripto);
 void imprimeParcial(criptografia * cripto);
 void imprimeCriptografado(criptografia * cripto);
 void imprimeChaves(criptografia * cripto);
+void alterarChave(criptografia *cripto, char original, char encriptada);
 #endif
