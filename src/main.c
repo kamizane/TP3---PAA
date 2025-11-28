@@ -46,27 +46,35 @@ void menu(){
             break;
             };
         case 2:{
-            char* texto = NULL;
-            texto = lerEntrada(0);
-            printf("Texto: %s\n", texto);
-            removeAcentoseMaiusculas(texto);
-            // ListaFrequencia lista[27];
-            // executaFrequencia(lista, texto);
-
             ColecaoFrequencias colecao;
             criaColecaoFrequencia(&colecao, texto);
-            //imprimeColecaofreq(colecao);
             imprimeColecao(colecao);
-            // char* pi  = folder_to_string("input/12arquivos");
-            // removeAcentoseMaiusculas(pi);
-            // printf("%s", pi);
-            // ListaFrequencia lista2[27];
-            // criaListaFrequencia(lista2);
-            // leArquivoFrequencia(lista2);
-            // imprimeLetrasEfrequencia(lista2);
-            // chutaCifraTexto(colecao);
-            // chutaCifra12Textos(colecao);
-            cravaMapeamento(colecao);
+
+            int opcaoFreq = 0;
+            printf("----Selecione como sera o chute----\n");
+            printf("1 - Chutar com base apenas em 1 texto\n");
+            printf("2 - Chutar com base nos 12 textos\n");
+            printf("3 - Chute feito com base na letra que tem maior frequencia, e apos isso deslocamento das outras\n");
+            printf("4 - Imprimir tabelas de frequencia\n");
+            printf("Digite a opcao: ");
+            scanf("%d", &opcaoFreq);
+
+            switch (opcaoFreq)
+            {
+            case 1:
+                chutaCifraTexto(colecao);
+                break;
+            case 2:
+                chutaCifra12Textos(colecao);
+                break;
+            case 3:
+                cravaMapeamento(colecao);
+                break;
+            case 4:
+                imprimeColecao(colecao);
+            default:
+                break;
+            }
             break;
         }
         case 3:{

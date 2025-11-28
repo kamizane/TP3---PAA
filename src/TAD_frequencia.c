@@ -26,7 +26,7 @@ void imprimeColecaofreq(ColecaoFrequencias colecao){
 
 void imprimeColecao(ColecaoFrequencias colecao) {
     printf("%-26s | %-26s | %-26s\n",
-           "Texto Original", "12 Arquivos", "Alfabeto");
+           "Texto Criptografado", "12 Arquivos", "Alfabeto");
 
     printf("%-26s | %-26s | %-26s\n",
            "Letra  Cnt   Freq",
@@ -65,6 +65,7 @@ void imprimeColecao(ColecaoFrequencias colecao) {
 
         printf("%-26s | %-26s | %-26s\n", buf1, buf2, buf3);
     }
+    printf("\n");
 }
 
 
