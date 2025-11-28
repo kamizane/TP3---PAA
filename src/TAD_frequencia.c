@@ -35,7 +35,7 @@ void imprimeColecao(ColecaoFrequencias colecao) {
 
     printf("-------------------------------------------------------------------------------\n");
 
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < 26; i++) {
 
         char buf1[40], buf2[40], buf3[40];
 
@@ -68,12 +68,11 @@ void imprimeColecao(ColecaoFrequencias colecao) {
 }
 
 
-
 void executaFrequencia(ListaFrequencia lista[], char *texto){
     criaListaFrequencia(lista);
     contabilizaLetra(lista, texto);
     calculaFrequencia(lista, texto);
-    QuickSort(lista,27);
+    QuickSort(lista,tamVetor);
 }
 void executaFrequencia12arquivos(ListaFrequencia lista[]){
 
@@ -83,7 +82,7 @@ void executaFrequencia12arquivos(ListaFrequencia lista[]){
     criaListaFrequencia(lista);
     contabilizaLetra(lista,textoCompleto);
     calculaFrequencia(lista,textoCompleto);
-    QuickSort(lista,27);
+    QuickSort(lista,tamVetor);
 }
 void criaListaFrequencia(ListaFrequencia lista[]){
     for (int i = 0; i < 27; i++) {
@@ -118,7 +117,7 @@ void calculaFrequencia(ListaFrequencia lista[], char *str){
 
     double letrasTexto = contagemLetrastexto(str);
     //printf("%lf\n", letrasTexto); //retirar dps
-    for(int i = 0;i < 27;i++){
+    for(int i = 0;i < tamVetor;i++){
     if(lista[i].caractere != '*'){
         lista[i].frequencia = (lista[i].qntd / letrasTexto); //frequencia em 0.(algo) tem que multiplicar por 100
     }else{continue;}
@@ -140,7 +139,7 @@ double contagemLetrastexto(char *str){
 void imprimeLetrasEfrequencia(ListaFrequencia lista[]) {
     printf("Letra,  Contagem,   Frequencia\n");
 
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < tamVetor; i++) {
         if (lista[i].caractere == '*') {
             continue;
         } else {
@@ -161,7 +160,7 @@ void leArquivoFrequencia(ListaFrequencia lista[]) {
     // Inicializa a lista
     const char *nomeArquivo = "input/ListaFrequencia.txt";
 
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < tamVetor; i++) {
         lista[i].caractere = '*';
         lista[i].qntd = 0;
         lista[i].frequencia = 0.0;
@@ -187,16 +186,21 @@ void leArquivoFrequencia(ListaFrequencia lista[]) {
             //printf("Lido: %c -> frequencia: %.4lf\n", letra, frequencia);
     }
 }
-    QuickSort(lista,27);
+    QuickSort(lista,tamVetor);
     fclose(arquivo);
     printf("\nLeitura concluida com sucesso!\n");
 }
 
 void chutaCifra(ColecaoFrequencias colecao){
-    int i = 0;
-    double valorC = 0; //valor cifrado
-    double valorA = 0; //valor alfabeto
-    while(colecao.listaTexto[i].caractere != '*'){
-        
+    for(int i = 0; i < 27; i++){
+        if(colecao.listaTexto[i].caractere == '*')
+            continue;
+
+        double freq = colecao.listaTexto[i].frequencia;
+        int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
+
+        printf("%c -> %c\n",
+               colecao.listaTexto[i].caractere,
+               colecao.listaAlfabeto[indice].caractere);
     }
 }

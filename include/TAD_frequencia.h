@@ -1,6 +1,7 @@
 #ifndef TAD_FREQUENCIA_H
 #define TAG_FREQUENCIA_H
 
+#define tamVetor 27
 
 typedef struct{
     char caractere;
@@ -9,9 +10,9 @@ typedef struct{
 }ListaFrequencia;
 
 typedef struct{
-    ListaFrequencia listaTexto[27];
-    ListaFrequencia lista12textos[27];
-    ListaFrequencia listaAlfabeto[27];
+    ListaFrequencia listaTexto[tamVetor];
+    ListaFrequencia lista12textos[tamVetor];
+    ListaFrequencia listaAlfabeto[tamVetor];
 }ColecaoFrequencias;
 
 
@@ -27,6 +28,8 @@ void imprimeLetrasEfrequencia(ListaFrequencia lista[]);
 double contagemLetrastexto(char *str);
 void calculaFrequencia(ListaFrequencia lista[], char *str);
 void leArquivoFrequencia(ListaFrequencia lista[]);
+
+void chutaCifra(ColecaoFrequencias colecao);
 
 
 #endif
