@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "./quicksort.c"
+#include "../include/quicksort.h"
 
 #include "../include/TAD_entrada.h"
 

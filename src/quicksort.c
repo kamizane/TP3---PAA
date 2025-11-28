@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "../include/TAD_frequencia.h"
+#include "../include/quicksort.h"
 
 
 
