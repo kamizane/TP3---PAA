@@ -10,22 +10,6 @@ void shift(int vetor[], int tamanho){
 }
 
 
-void casamento_exato(char texto[],char padrao[], float * frequencia, int * contador) {
-    int n = strlen(texto);
-    int m = strlen(padrao);
-    for (int i = 0; i <= n - m; i++) {
-        int j = 0;
-        while (j < m && texto[i + j] == padrao[j]) {
-            j++;
-        }
-        if (j == m) {
-            *contador +=1;
-        }
-    }
-    float aux = (*contador);
-    *frequencia = ((aux) / n) * 100;
-}
-
 void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
     //declarações
     int tamanhoPadrao = strlen(padrao);
@@ -50,6 +34,7 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
         }else{
             printf("Entrada inválida, tente novamente!\n");
         }
+        printf("\n");
     }
 
 
@@ -154,7 +139,7 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
         
 
         if(infos == 1){
-            printf("%c       |", texto[i]);
+            printf("\033[34m%c       |\033[0m", texto[i]);
             for(int j = 0; j<=maxOperacoes;j++){
                 printf(" k = %d :", j);
                 for(int k = 0;k<tamanhoPadrao;k++){
@@ -164,9 +149,14 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
                 for(int k = 0;k<tamanhoPadrao;k++){
                     printf("%d",Rlinha[j][k]);
                 }
-                printf(" ||");
+                printf(" \033[34m||\033[0m");
             }
-            printf("\n");
+            if(i == tamanhoTexto-1){
+                printf("\n\n\n");
+            }else{
+                printf("\n");
+            }
+            
         }
 
 
@@ -182,19 +172,57 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
 
     if(infos == 1){
         for(int i = 0; i<tamanhoM; i++){
-            printf("%c " ,M[i][0]);
+            printf("\033[34m%c\033[0m " ,M[i][0]);
             for(int j = 1; j<=tamanhoPadrao;j++){
                 printf("%d " ,M[i][j]);
             }
             printf("\n");
         }   
+        printf("\n\n");
     }
 
     for(int i = 0; i<=maxOperacoes; i++){
-        printf("Ocorrencias com %d operacoes:  %d\n",i,ocorrencias[i].tamanho);
+        printf("\033[34mOcorrencias com %d operacoes:  %d\033[0m\n",i,ocorrencias[i].tamanho);
     }
+    printf("\n\n");
 
 
+    for(int i = 0; i<=maxOperacoes; i++){
+
+        printf("\033[34mOcorrencias para %d operacoes:\033[0m\n",i);
+
+        Celula * celulaOcorrencia;
+        celulaOcorrencia = ocorrencias[i].primeiro->prox;
+
+        
+        for(int k = 0; k<ocorrencias[i].tamanho;k++){
+            printf("\033[34mOcorrencia %d:\033[0m \n", k+1);
+            int pos = 0;
+            for(int j = 0 ; j< tamanhoTexto; j++){
+                
+                if((celulaOcorrencia->posicao - j < tamanhoPadrao)&&(celulaOcorrencia->posicao - j >=0)){
+                    if(texto[j]!= padrao[pos]){
+                        printf("\033[31m""%c""\033[0m", texto[j]);
+                    }else{
+                        printf("\033[32m""%c""\033[0m", texto[j]);
+                    }
+                    
+                    pos++;
+                }else{
+                    printf("%c", texto[j]); 
+                }
+
+
+            }
+            printf("\n");
+
+            if(celulaOcorrencia->prox != NULL){
+                celulaOcorrencia = celulaOcorrencia->prox;
+            }
+            
+        }
+        printf("\n\n");
+    }
 
 
 }

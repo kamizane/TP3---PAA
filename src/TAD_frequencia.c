@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "quicksort.c"
+#include "../include/quicksort.h"
 
 void executaFrequencia(ListaFrequencia lista[], char *texto){
     criaListaFrequencia(lista);

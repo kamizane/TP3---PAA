@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "../include/entrada.h"
 #include "../include/TAD_Criptografia.h"
@@ -64,11 +65,18 @@ void menu(){
             printf("Frequencia (quantidade de letras): %.2f%%\n", frequencia); 
             break;
         };
-        case 4:
-            casamentoAproximado(2,"OS TESTES TESTAM","TESTE");
+        case 4:{
+
+            int maxOperacoes = 0;
+            printf("Qual o padrao utilizado?\n> ");
+            char * padrao = lerDoTeclado();
+            printf("Qual o limite de operacoes?\n>");
+            scanf("%d", &maxOperacoes);
+
+            casamentoAproximado(maxOperacoes,teste.parcial, padrao);
             teste.parcial[0] = ';';
-            printf("%c", teste.criptografado[0]);
             break;
+        };
         case 5:
             printf("Informe a letra original e a letra para a qual foi mapeada (ex: A S):\n> ");
             scanf(" %c %c", &original, &encriptada);
