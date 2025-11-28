@@ -86,7 +86,10 @@ void alterarChave(criptografia *cripto, char original, char encriptada) {
     
     original = toupper(original);
     encriptada = toupper(encriptada);
-
+    if(original< 65 || original > 90 || encriptada < 65 || encriptada > 90){
+        printf("Caracter invalido! Operacao cancelada.\n");
+        return;
+    }
     int idx = original - 'A';
     cripto->Chaves.cifra[idx] = encriptada;
 
