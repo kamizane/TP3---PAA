@@ -9,6 +9,7 @@ int gerarNmrAleatorio(int min, int max){
     return (rand() % (max - min + 1)) + min;
 }
 
+//Função que realiza a criptografia por substitução
 void cifraDeDeslocamento(char *texto) {
     srand(time(NULL));
     int chave = gerarNmrAleatorio(1,25);
@@ -27,17 +28,6 @@ void cifraDeDeslocamento(char *texto) {
 }
 
 //adaptação do algoritimo Boyer-Moore-Horspool Algorithm implementado em java. Mais detalhes na documentação.
-void computeLastOcc(const char *padrao, int lastOcc[]) {
-    for (int i = 0; i < 128; i++) {
-        lastOcc[i] = -1;
-    }
-
-    int m = strlen(padrao);
-    for (int i = 0; i < m - 1; i++) {
-        lastOcc[(unsigned char)padrao[i]] = i;
-    }
-}
-
 void casamento_exato(char *texto, char *padrao,float * frequencia, int *contador) {
     int n = strlen(texto);
     int m = strlen(padrao);
@@ -74,4 +64,13 @@ void casamento_exato(char *texto, char *padrao,float * frequencia, int *contador
     *frequencia = ((aux) / n) * 100;
 }
 
+void computeLastOcc(const char *padrao, int lastOcc[]) {
+    for (int i = 0; i < 128; i++) {
+        lastOcc[i] = -1;
+    }
 
+    int m = strlen(padrao);
+    for (int i = 0; i < m - 1; i++) {
+        lastOcc[(unsigned char)padrao[i]] = i;
+    }
+}

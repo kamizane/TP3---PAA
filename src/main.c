@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/TAD_entrada.h"
+#include "../include/entrada.h"
 #include "../include/busca_encripto.h"
 #include "../include/TAD_frequencia.h"
 #include "../include/processador_cripto.h"
@@ -14,13 +14,21 @@ int main(){
 }
 
 void menu(){
-    //faz a leitura e utiliza o arquivo especificado ao grupo
-    char * texto = lerEntrada(1);
+    printf("Deseja ler o texto do grupo (1) ou inserir manualmente outro texto?(2): ");
+    int m;
+    scanf("%d", &m);
+    char * texto=NULL;
+    if (m == 1){
+        texto = lerEntrada(1);
+    }
+    else{
+        texto = lerEntrada(2);
+    }
+
     char original, encriptada;
     removeAcentoseMaiusculas(texto);
     criptografia teste;
     inicializaChaves(&teste, texto);
-
     int flag = 1;
     while(flag){
         printf("\033[33m--------------------MENU--------------------\033[0m\n");

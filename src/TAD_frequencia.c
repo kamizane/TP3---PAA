@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "../include/quicksort.h"
-#include "../include/TAD_entrada.h"
+#include "../include/entrada.h"
 
 void criaColecaoFrequencia(ColecaoFrequencias *colecao, char *texto){
     executaFrequencia(colecao->listaTexto,texto);

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <ctype.h>
-#include "../include/TAD_entrada.h"
+#include "../include/entrada.h"
 
 char* lerEntrada(int flag) {
     FILE *file;

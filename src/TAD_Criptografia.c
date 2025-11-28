@@ -71,11 +71,11 @@ void imprimeParcial(criptografia * cripto){
 void imprimeChaves(criptografia * cripto){
     printf("\033[34m=== Chave ===\033[0m\n");
     for(int i=0; i<26; i++){
-        printf("%c",cripto->Chaves.normal[i]);
+        printf("%c ",cripto->Chaves.normal[i]);
     }
     printf("\n");
     for(int i=0; i<26; i++){
-        printf("%c",cripto->Chaves.cifra[i]);
+        printf("%c ",cripto->Chaves.cifra[i]);
     }
     printf("\n");
     printf("\n");

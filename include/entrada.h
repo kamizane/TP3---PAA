@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <dirent.h>
 
-char* lerEntrada();
+char* lerEntrada(int flag);
 void removeAcentoseMaiusculas(char *p);
 void filtrarApenasLetras(char* str);
 char* folder_to_string(const char *path);
