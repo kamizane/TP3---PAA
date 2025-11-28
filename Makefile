@@ -3,7 +3,10 @@ CFLAGS = -Wall -Wextra -Iinclude
 BUILD = build
 
 SRC = src/main.c \
-      src/TAD_Criptografia.c
+      src/TAD_Criptografia.c \
+	  src/criptografar.c \
+	  src/TAD_Ocorrencias.c \
+	  src/busca_encripto.c
 
 OBJ = $(SRC:src/%.c=$(BUILD)/%.o)
 

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/TAD_Criptografia.h"
-#include "criptografar.c"
+#include "../include/criptografar.h"
 
 void inicializaChaves(criptografia * cripto, char * texto){
     char letraEmNumero = 65;

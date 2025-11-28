@@ -2,7 +2,8 @@
 #include <string.h>
 #include "entrada.c"
 #include "../include/TAD_Criptografia.h"
-#include "busca_encripto.c"
+#include "../include/busca_encripto.h"
+
 
 void menu();
 char * lerDoTeclado();
@@ -60,6 +61,7 @@ void menu(){
             break;
         };
         case 4:
+            casamentoAproximado(2,"OS TESTES TESTAM","TESTE");
             break;
         case 5:
             break;
