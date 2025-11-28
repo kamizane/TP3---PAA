@@ -11,7 +11,7 @@ char* lerEntrada(int flag) {
     char *conteudo = NULL;
     long tamanhoArquivo;
     if (flag == 1){
-        strcpy(nome,"input/teste.txt");
+        strcpy(nome,"input/Dang Heng - Terravox.txt");
         file = fopen(nome, "r");
         if(file == NULL) {
             printf("Arquivo invalido\n");

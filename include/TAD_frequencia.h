@@ -1,6 +1,8 @@
 #ifndef TAD_FREQUENCIA_H
 #define TAG_FREQUENCIA_H
 
+#include "../include/TAD_Criptografia.h"
+
 #define tamVetor 27
 
 typedef struct{
@@ -29,8 +31,8 @@ double contagemLetrastexto(char *str);
 void calculaFrequencia(ListaFrequencia lista[], char *str);
 void leArquivoFrequencia(ListaFrequencia lista[]);
 
-void chutaCifraTexto(ColecaoFrequencias colecao);
-void chutaCifra12Textos(ColecaoFrequencias colecao);
-void cravaMapeamento(ColecaoFrequencias colecao);
+void chutaCifraTexto(ColecaoFrequencias colecao, criptografia *cripto);
+void chutaCifra12Textos(ColecaoFrequencias colecao, criptografia *cripto);
+void cravaMapeamento(ColecaoFrequencias colecao, criptografia *cripto);
 
 #endif

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/TAD_entrada.h"
-#include "../include/TAD_Criptografia.h"
 #include "../include/busca_encripto.h"
 #include "../include/TAD_frequencia.h"
 #include "../include/processador_cripto.h"
@@ -64,13 +63,13 @@ void menu(){
             switch (opcaoFreq)
             {
             case 1:
-                chutaCifraTexto(colecao);
+                chutaCifraTexto(colecao, &teste);
                 break;
             case 2:
-                chutaCifra12Textos(colecao);
+                chutaCifra12Textos(colecao, &teste);
                 break;
             case 3:
-                cravaMapeamento(colecao);
+                cravaMapeamento(colecao, &teste);
                 break;
             case 4:
                 imprimeColecao(colecao);
@@ -107,7 +106,7 @@ void menu(){
             break;
         case 6:
             exportarResultado(&teste);
-            flag =0;
+            flag = 0;
             return;
         
         default:

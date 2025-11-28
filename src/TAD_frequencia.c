@@ -3,7 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "../include/quicksort.h"
-
 #include "../include/TAD_entrada.h"
 
 void criaColecaoFrequencia(ColecaoFrequencias *colecao, char *texto){
@@ -192,7 +191,7 @@ void leArquivoFrequencia(ListaFrequencia lista[]) {
     printf("\nLeitura concluida com sucesso!\n");
 }
 
-void chutaCifraTexto(ColecaoFrequencias colecao){
+void chutaCifraTexto(ColecaoFrequencias colecao, criptografia *cripto){
     for(int i = 0; i < 27; i++){
         if(colecao.listaTexto[i].caractere == '*')
             continue;
@@ -202,12 +201,13 @@ void chutaCifraTexto(ColecaoFrequencias colecao){
 
         printf("%c -> %c\n", colecao.listaTexto[i].caractere, colecao.listaAlfabeto[indice].caractere);
         //substituir funcao troca
+        alterarChave(cripto, colecao.listaAlfabeto[indice].caractere, colecao.listaTexto[i].caractere);
         colecao.listaAlfabeto[indice].caractere = '*';
     }
     printf("\n");
 }
 
-void chutaCifra12Textos(ColecaoFrequencias colecao){
+void chutaCifra12Textos(ColecaoFrequencias colecao, criptografia *cripto){
     for(int i = 0; i < 27; i++){
         if(colecao.lista12textos[i].caractere == '*')
             continue;
@@ -216,13 +216,13 @@ void chutaCifra12Textos(ColecaoFrequencias colecao){
         int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
 
         printf("%c -> %c\n",colecao.lista12textos[i].caractere,colecao.listaAlfabeto[indice].caractere);
-        //substituir funcao troca
+        alterarChave(cripto, colecao.listaAlfabeto[indice].caractere, colecao.listaTexto[i].caractere);
         colecao.listaAlfabeto[indice].caractere = '*';
     }
     printf("\n");
 }
 
-void cravaMapeamento(ColecaoFrequencias colecao) { //crava o mapeamento com base na letra mais frequente do texto
+void cravaMapeamento(ColecaoFrequencias colecao, criptografia *cripto) { //crava o mapeamento com base na letra mais frequente do texto
     // letra mais frequente do texto
     int idxMax = -1;
     double maiorFreq = -1.0;
@@ -274,6 +274,7 @@ void cravaMapeamento(ColecaoFrequencias colecao) { //crava o mapeamento com base
         char decodificada = ((cifrada - 'A' - deslocamento + 26) % 26) + 'A';
 
         printf("%c -> %c\n", cifrada, decodificada); //substituir funcao troca
+        alterarChave(cripto, decodificada, cifrada);
     }
 
     printf("\n");
