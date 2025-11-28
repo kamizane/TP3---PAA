@@ -24,13 +24,23 @@ void imprimeColecaofreq(ColecaoFrequencias colecao){
 }
 
 void imprimeColecao(ColecaoFrequencias colecao) {
-    printf("%-26s | %-26s | %-26s\n",
-           "Texto Criptografado", "12 Arquivos", "Alfabeto");
 
-    printf("%-26s | %-26s | %-26s\n",
-           "Letra  Cnt   Freq",
-           "Letra  Cnt   Freq",
-           "Letra  Cnt   Freq");
+    // Cores
+    const char *COR1 = "\033[34m"; // azul
+    const char *COR2 = "\033[32m"; // verde
+    const char *COR3 = "\033[35m"; // magenta
+    const char *RESET = "\033[0m";
+
+    // Cabeçalho
+    printf("%s%-26s%s | %s%-26s%s | %s%-26s%s\n",
+           COR1, "Texto Criptografado", RESET,
+           COR2, "12 Arquivos", RESET,
+           COR3, "Alfabeto", RESET);
+
+    printf("%s%-26s%s | %s%-26s%s | %s%-26s%s\n",
+           COR1, "Letra  Cnt   Freq", RESET,
+           COR2, "Letra  Cnt   Freq", RESET,
+           COR3, "Letra  Cnt   Freq", RESET);
 
     printf("-------------------------------------------------------------------------------\n");
 
@@ -62,10 +72,17 @@ void imprimeColecao(ColecaoFrequencias colecao) {
                      colecao.listaAlfabeto[i].qntd,
                      colecao.listaAlfabeto[i].frequencia * 100);
 
-        printf("%-26s | %-26s | %-26s\n", buf1, buf2, buf3);
+        // Três colunas com cores diferentes
+        printf("%s%-26s%s | %s%-26s%s | %s%-26s%s\n",
+               COR1, buf1, RESET,
+               COR2, buf2, RESET,
+               COR3, buf3, RESET);
     }
+
     printf("\n");
 }
+
+
 
 
 void executaFrequencia(ListaFrequencia lista[], char *texto){
@@ -199,7 +216,7 @@ void chutaCifraTexto(ColecaoFrequencias colecao, criptografia *cripto){
         double freq = colecao.listaTexto[i].frequencia;
         int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
 
-        printf("%c -> %c\n", colecao.listaTexto[i].caractere, colecao.listaAlfabeto[indice].caractere);
+        //printf("%c -> %c\n", colecao.listaTexto[i].caractere, colecao.listaAlfabeto[indice].caractere);
         //substituir funcao troca
         alterarChave(cripto, colecao.listaAlfabeto[indice].caractere, colecao.listaTexto[i].caractere);
         colecao.listaAlfabeto[indice].caractere = '*';
@@ -215,7 +232,7 @@ void chutaCifra12Textos(ColecaoFrequencias colecao, criptografia *cripto){
         double freq = colecao.lista12textos[i].frequencia;
         int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
 
-        printf("%c -> %c\n",colecao.lista12textos[i].caractere,colecao.listaAlfabeto[indice].caractere);
+        //printf("%c -> %c\n",colecao.lista12textos[i].caractere,colecao.listaAlfabeto[indice].caractere);
         alterarChave(cripto, colecao.listaAlfabeto[indice].caractere, colecao.listaTexto[i].caractere);
         colecao.listaAlfabeto[indice].caractere = '*';
     }
@@ -273,7 +290,7 @@ void cravaMapeamento(ColecaoFrequencias colecao, criptografia *cripto) { //crava
         }
         char decodificada = ((cifrada - 'A' - deslocamento + 26) % 26) + 'A';
 
-        printf("%c -> %c\n", cifrada, decodificada); //substituir funcao troca
+        //printf("%c -> %c\n", cifrada, decodificada); //substituir funcao troca
         alterarChave(cripto, decodificada, cifrada);
     }
 
