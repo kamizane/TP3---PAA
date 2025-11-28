@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <dirent.h>
 #include <ctype.h>
 
 #include "../include/TAD_entrada.h"
@@ -139,7 +140,6 @@ void filtrarApenasLetras(char* str) {
     }
 }
 
-#include <dirent.h>
 
 char* folder_to_string(const char *path) {
     DIR *d = opendir(path);

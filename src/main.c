@@ -45,15 +45,14 @@ void menu(){
         case 2:{
             char* texto = NULL;
             texto = lerEntrada();
-            printf("Texto: %s\n", texto);
             removeAcentoseMaiusculas(texto);
             // ListaFrequencia lista[27];
             // executaFrequencia(lista, texto);
 
             ColecaoFrequencias colecao;
             criaColecaoFrequencia(&colecao, texto);
-            imprimeColecaofreq(colecao);
-            
+            //imprimeColecaofreq(colecao);
+            imprimeColecao(colecao);
             // char* pi  = folder_to_string("input/12arquivos");
             // removeAcentoseMaiusculas(pi);
             // printf("%s", pi);

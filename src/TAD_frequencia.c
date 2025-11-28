@@ -24,6 +24,51 @@ void imprimeColecaofreq(ColecaoFrequencias colecao){
     printf("----------------------------------------\n");
 }
 
+void imprimeColecao(ColecaoFrequencias colecao) {
+    printf("%-26s | %-26s | %-26s\n",
+           "Texto Original", "12 Arquivos", "Alfabeto");
+
+    printf("%-26s | %-26s | %-26s\n",
+           "Letra  Cnt   Freq",
+           "Letra  Cnt   Freq",
+           "Letra  Cnt   Freq");
+
+    printf("-------------------------------------------------------------------------------\n");
+
+    for (int i = 0; i < 27; i++) {
+
+        char buf1[40], buf2[40], buf3[40];
+
+        if (colecao.listaTexto[i].caractere == '*')
+            snprintf(buf1, sizeof(buf1), "-");
+        else
+            snprintf(buf1, sizeof(buf1), "%-1c %5.0lf %7.2lf%%",
+                     colecao.listaTexto[i].caractere,
+                     colecao.listaTexto[i].qntd,
+                     colecao.listaTexto[i].frequencia * 100);
+
+        if (colecao.lista12textos[i].caractere == '*')
+            snprintf(buf2, sizeof(buf2), "-");
+        else
+            snprintf(buf2, sizeof(buf2), "%-1c %5.0lf %7.2lf%%",
+                     colecao.lista12textos[i].caractere,
+                     colecao.lista12textos[i].qntd,
+                     colecao.lista12textos[i].frequencia * 100);
+
+        if (colecao.listaAlfabeto[i].caractere == '*')
+            snprintf(buf3, sizeof(buf3), "-");
+        else
+            snprintf(buf3, sizeof(buf3), "%-1c %5.0lf %7.2lf%%",
+                     colecao.listaAlfabeto[i].caractere,
+                     colecao.listaAlfabeto[i].qntd,
+                     colecao.listaAlfabeto[i].frequencia * 100);
+
+        printf("%-26s | %-26s | %-26s\n", buf1, buf2, buf3);
+    }
+}
+
+
+
 void executaFrequencia(ListaFrequencia lista[], char *texto){
     criaListaFrequencia(lista);
     contabilizaLetra(lista, texto);
@@ -32,12 +77,12 @@ void executaFrequencia(ListaFrequencia lista[], char *texto){
 }
 void executaFrequencia12arquivos(ListaFrequencia lista[]){
 
-    char* pi = folder_to_string("input/12arquivos");
-    removeAcentoseMaiusculas(pi);
-    printf("%s", pi);
+    char* textoCompleto = folder_to_string("input/12arquivos");
+    removeAcentoseMaiusculas(textoCompleto);
+    //printf("%s", textoCompleto);
     criaListaFrequencia(lista);
-    contabilizaLetra(lista,pi);
-    calculaFrequencia(lista,pi);
+    contabilizaLetra(lista,textoCompleto);
+    calculaFrequencia(lista,textoCompleto);
     QuickSort(lista,27);
 }
 void criaListaFrequencia(ListaFrequencia lista[]){
@@ -55,7 +100,7 @@ void contabilizaLetra(ListaFrequencia lista[], char *str){
         // isalpha verifica(A-Z ou a-z)
         if (isalpha(str[i])){
             int indiceLetra = tolower(str[i]) - 'a'; // em ascii essa conta retorna um indice entre 0 e 1
-            printf("(%c)", str[i]);
+            //printf("(%c)", str[i]);
             if (lista[indiceLetra].caractere == '*'){
                 lista[indiceLetra].caractere = str[i];
                 lista[indiceLetra].qntd++;
@@ -67,13 +112,12 @@ void contabilizaLetra(ListaFrequencia lista[], char *str){
         }
         i++;
     }
-    printf("\n CONTABILIZACAO SUCESSO\n");
 }
 
 void calculaFrequencia(ListaFrequencia lista[], char *str){
 
     double letrasTexto = contagemLetrastexto(str);
-    printf("%lf\n", letrasTexto); //retirar dps
+    //printf("%lf\n", letrasTexto); //retirar dps
     for(int i = 0;i < 27;i++){
     if(lista[i].caractere != '*'){
         lista[i].frequencia = (lista[i].qntd / letrasTexto); //frequencia em 0.(algo) tem que multiplicar por 100
@@ -140,10 +184,19 @@ void leArquivoFrequencia(ListaFrequencia lista[]) {
             lista[indice].caractere = letra;
             lista[indice].frequencia = frequencia;
             lista[indice].qntd = 0;
-            printf("Lido: %c -> frequencia: %.4lf\n", letra, frequencia);
+            //printf("Lido: %c -> frequencia: %.4lf\n", letra, frequencia);
     }
 }
     QuickSort(lista,27);
     fclose(arquivo);
     printf("\nLeitura concluida com sucesso!\n");
+}
+
+void chutaCifra(ColecaoFrequencias colecao){
+    int i = 0;
+    double valorC = 0; //valor cifrado
+    double valorA = 0; //valor alfabeto
+    while(colecao.listaTexto[i].caractere != '*'){
+        
+    }
 }

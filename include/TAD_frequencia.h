@@ -17,6 +17,7 @@ typedef struct{
 
 void criaColecaoFrequencia(ColecaoFrequencias *colecao, char *texto);
 void imprimeColecaofreq(ColecaoFrequencias colecao);
+void imprimeColecao(ColecaoFrequencias colecao);
 
 void criaListaFrequencia(ListaFrequencia lista[]);
 void executaFrequencia(ListaFrequencia lista[], char *texto);
