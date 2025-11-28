@@ -3,30 +3,19 @@
 #include <string.h>
 #include <dirent.h>
 #include <ctype.h>
+#include "../include/entrada.h"
 
-#include "../include/TAD_entrada.h"
-
-char* lerEntrada() {
+char* lerEntrada(int flag) {
     FILE *file;
     char nome[256];
     char *conteudo = NULL;
     long tamanhoArquivo;
-
-    while(1) {
-        printf("Digite o caminho para o arquivo (0 para sair):\n");
-       
-        scanf("%255s", nome);
-
-        if(strcmp(nome, "0") == 0) {
-            printf("Saindo...\n");
-            return NULL;
-        }
-
+    if (flag == 1){
+        strcpy(nome,"input/teste.txt");
         file = fopen(nome, "r");
-
         if(file == NULL) {
-            printf("Arquivo invalido, tente novamente...\n");
-            continue;
+            printf("Arquivo invalido\n");
+            return "False";
         } else {
             
             fseek(file, 0, SEEK_END); 
@@ -46,6 +35,45 @@ char* lerEntrada() {
             conteudo[lidos] = '\0';
             fclose(file);
             return conteudo; 
+        }
+        
+    }else{
+
+        while(1) {
+            printf("Digite o caminho para o arquivo (0 para sair):\n");
+        
+            scanf("%255s", nome);
+
+            if(strcmp(nome, "0") == 0) {
+                printf("Saindo...\n");
+                return NULL;
+            }
+
+            file = fopen(nome, "r");
+
+            if(file == NULL) {
+                printf("Arquivo invalido, tente novamente...\n");
+                continue;
+            } else {
+                
+                fseek(file, 0, SEEK_END); 
+                tamanhoArquivo = ftell(file);
+                rewind(file);
+
+                conteudo = (char*) malloc(sizeof(char) * (tamanhoArquivo + 1));
+
+                if (conteudo == NULL) {
+                    printf("Erro ao alocar memoria!\n");
+                    fclose(file);
+                    return NULL;
+                }
+
+                size_t lidos = fread(conteudo, 1, tamanhoArquivo, file);
+                
+                conteudo[lidos] = '\0';
+                fclose(file);
+                return conteudo; 
+            }
         }
     }
 }
