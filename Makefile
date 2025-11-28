@@ -1,32 +1,51 @@
+# Compilador e flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
+
+# Diretórios
 BUILD = build
 
+# Fontes
 SRC = src/main.c \
-	  src/TAD_Ocorrencias.c \
-	  src/quicksort.c\
-	  src/busca_encripto.c\
-      src/TAD_Criptografia.c\
-	  src/TAD_frequencia.c\
-	  src/processador_cripto.c\
-	  src/entrada.c
+      src/TAD_Ocorrencias.c \
+      src/quicksort.c \
+      src/busca_encripto.c \
+      src/TAD_Criptografia.c \
+      src/TAD_frequencia.c \
+      src/processador_cripto.c \
+      src/entrada.c
 
 OBJ = $(SRC:src/%.c=$(BUILD)/%.o)
 
-EXEC = main.exe
+# Detecta Windows ou Linux
+ifeq ($(OS),Windows_NT)
+    EXEC = main.exe
+    MKDIR = if not exist "$(BUILD)" mkdir "$(BUILD)"
+    RM = del /Q
+    RUN_CMD = .\$(EXEC)
+else
+    EXEC = main
+    MKDIR = mkdir -p $(BUILD)
+    RM = rm -f
+    RUN_CMD = ./$(EXEC)
+endif
 
+# Regra padrão
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
+# Compila objetos
 $(BUILD)/%.o: src/%.c
-	@if not exist "$(BUILD)" mkdir "$(BUILD)"
+	@$(MKDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Limpeza
 clean:
-	del /Q $(BUILD)\*.o
-	del /Q $(EXEC)
+	$(RM) $(BUILD)/* 
+	$(RM) $(EXEC)
 
+# Executa
 run: all
-	./$(EXEC)
+	$(RUN_CMD)
