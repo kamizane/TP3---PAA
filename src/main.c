@@ -46,12 +46,27 @@ void menu(){
             break;
             };
         case 2:{
-           char* texto = NULL;
+            char* texto = NULL;
             texto = lerEntrada(0);
             printf("Texto: %s\n", texto);
             removeAcentoseMaiusculas(texto);
-            ListaFrequencia lista[27];
-            executaFrequencia(lista, texto);
+            // ListaFrequencia lista[27];
+            // executaFrequencia(lista, texto);
+
+            ColecaoFrequencias colecao;
+            criaColecaoFrequencia(&colecao, texto);
+            //imprimeColecaofreq(colecao);
+            imprimeColecao(colecao);
+            // char* pi  = folder_to_string("input/12arquivos");
+            // removeAcentoseMaiusculas(pi);
+            // printf("%s", pi);
+            // ListaFrequencia lista2[27];
+            // criaListaFrequencia(lista2);
+            // leArquivoFrequencia(lista2);
+            // imprimeLetrasEfrequencia(lista2);
+            // chutaCifraTexto(colecao);
+            // chutaCifra12Textos(colecao);
+            cravaMapeamento(colecao);
             break;
         }
         case 3:{
