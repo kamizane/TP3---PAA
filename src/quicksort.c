@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "../include/TAD_frequencia.h"
+#include "../include/quicksort.h"
+
+
 
 int ehMenor(ListaFrequencia a, ListaFrequencia b) {
     if (a.caractere == 0 && b.caractere != 0) return 0;
