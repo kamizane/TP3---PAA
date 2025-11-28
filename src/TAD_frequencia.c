@@ -115,7 +115,7 @@ void contabilizaLetra(ListaFrequencia lista[], char *str){
     while (str[i] != '\0'){
         // isalpha verifica(A-Z ou a-z)
         if (isalpha(str[i])){
-            int indiceLetra = tolower(str[i]) - 'a'; // em ascii essa conta retorna um indice entre 0 e 1
+            int indiceLetra = tolower(str[i]) - 'a'; // em ascii essa conta retorna um indice entre tam alfabeto
             //printf("(%c)", str[i]);
             if (lista[indiceLetra].caractere == '*'){
                 lista[indiceLetra].caractere = str[i];

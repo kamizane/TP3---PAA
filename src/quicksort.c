@@ -39,11 +39,11 @@ void Ordena(int Esq, int Dir, ListaFrequencia *item) {
     if (i < Dir) Ordena(i, Dir, item);
 }
 
-void QuickSort(ListaFrequencia *vetor, int n) {
+void QuickSort(ListaFrequencia *vetor, int n) { //quicksort decrescente
     Ordena(0, n - 1, vetor);
 }
 
-int buscaBinariaAproximada(ListaFrequencia lista[], int n, double alvo){
+int buscaBinariaAproximada(ListaFrequencia lista[], int n, double alvo){ //busca bianria decrescente aproximada
 
     ListaFrequencia validos[27];
     int m = 0;
