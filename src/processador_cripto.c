@@ -27,6 +27,18 @@ void cifraDeDeslocamento(char *texto) {
     
 }
 
+
+void computeLastOcc(const char *padrao, int lastOcc[]) {
+    for (int i = 0; i < 128; i++) {
+        lastOcc[i] = -1;
+    }
+
+    int m = strlen(padrao);
+    for (int i = 0; i < m - 1; i++) {
+        lastOcc[(unsigned char)padrao[i]] = i;
+    }
+}
+
 //adaptação do algoritimo Boyer-Moore-Horspool Algorithm implementado em java. Mais detalhes na documentação.
 void casamento_exato(char *texto, char *padrao,float * frequencia, int *contador) {
     int n = strlen(texto);
@@ -60,17 +72,7 @@ void casamento_exato(char *texto, char *padrao,float * frequencia, int *contador
             i0 += shift;
         }
     }
-    float aux = (*contador);
-    *frequencia = ((aux) / n) * 100;
+    float aux = (*contador) ;
+    *frequencia = ((aux) / (n/m)) * 100;
 }
 
-void computeLastOcc(const char *padrao, int lastOcc[]) {
-    for (int i = 0; i < 128; i++) {
-        lastOcc[i] = -1;
-    }
-
-    int m = strlen(padrao);
-    for (int i = 0; i < m - 1; i++) {
-        lastOcc[(unsigned char)padrao[i]] = i;
-    }
-}
