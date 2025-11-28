@@ -191,7 +191,7 @@ void leArquivoFrequencia(ListaFrequencia lista[]) {
     printf("\nLeitura concluida com sucesso!\n");
 }
 
-void chutaCifra(ColecaoFrequencias colecao){
+void chutaCifraTexto(ColecaoFrequencias colecao){
     for(int i = 0; i < 27; i++){
         if(colecao.listaTexto[i].caractere == '*')
             continue;
@@ -199,8 +199,81 @@ void chutaCifra(ColecaoFrequencias colecao){
         double freq = colecao.listaTexto[i].frequencia;
         int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
 
-        printf("%c -> %c\n",
-               colecao.listaTexto[i].caractere,
-               colecao.listaAlfabeto[indice].caractere);
+        printf("%c -> %c\n", colecao.listaTexto[i].caractere, colecao.listaAlfabeto[indice].caractere);
+        //substituir funcao troca
+        colecao.listaAlfabeto[indice].caractere = '*';
     }
+    printf("\n");
+}
+
+void chutaCifra12Textos(ColecaoFrequencias colecao){
+    for(int i = 0; i < 27; i++){
+        if(colecao.lista12textos[i].caractere == '*')
+            continue;
+
+        double freq = colecao.lista12textos[i].frequencia;
+        int indice = buscaBinariaAproximada(colecao.listaAlfabeto, tamVetor, freq);
+
+        printf("%c -> %c\n",colecao.lista12textos[i].caractere,colecao.listaAlfabeto[indice].caractere);
+        //substituir funcao troca
+        colecao.listaAlfabeto[indice].caractere = '*';
+    }
+    printf("\n");
+}
+
+void cravaMapeamento(ColecaoFrequencias colecao) { //crava o mapeamento com base na letra mais frequente do texto
+    // letra mais frequente do texto
+    int idxMax = -1;
+    double maiorFreq = -1.0;
+
+    for (int i = 0; i < 27; i++) {
+        if (colecao.listaTexto[i].caractere == '*')
+            continue;
+
+        if (colecao.listaTexto[i].frequencia > maiorFreq) {
+            maiorFreq = colecao.listaTexto[i].frequencia;
+            idxMax = i;
+        }
+    }
+
+    if (idxMax == -1) {
+        printf("Nenhuma letra válida encontrada.\n");
+        return;
+    }
+
+    char letraTexto = colecao.listaTexto[idxMax].caractere;
+    double freqTexto = colecao.listaTexto[idxMax].frequencia;
+
+    // analise em freq alfabeto
+    int idxAlfa = buscaBinariaAproximada(colecao.listaAlfabeto, 27, freqTexto);
+    char letraAlfa = colecao.listaAlfabeto[idxAlfa].caractere;
+
+    int deslocamento = (letraTexto - letraAlfa);
+    if (deslocamento < 0){
+        deslocamento += 26;
+    }
+
+    // printf("Letra freq: %c\n", letraTexto);
+    // printf("Letra freq mapeada: %c\n", letraAlfa);
+    // printf("Deslocamento: %d\n\n", deslocamento);
+
+    // 4) Agora usa o deslocamento para mapear TODAS as letras do texto
+    printf("Mapeamento completo usando deslocamento:\n");
+
+    for (int i = 0; i < 27; i++) {
+        if (colecao.listaTexto[i].caractere == '*')
+            continue;
+
+        char cifrada = colecao.listaTexto[i].caractere;
+
+        if (cifrada < 'A' || cifrada > 'Z') { //so letra
+            printf(" caractere invalido: %c -> ?\n", cifrada);
+            continue;
+        }
+        char decodificada = ((cifrada - 'A' - deslocamento + 26) % 26) + 'A';
+
+        printf("%c -> %c\n", cifrada, decodificada); //substituir funcao troca
+    }
+
+    printf("\n");
 }

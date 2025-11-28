@@ -29,7 +29,8 @@ double contagemLetrastexto(char *str);
 void calculaFrequencia(ListaFrequencia lista[], char *str);
 void leArquivoFrequencia(ListaFrequencia lista[]);
 
-void chutaCifra(ColecaoFrequencias colecao);
-
+void chutaCifraTexto(ColecaoFrequencias colecao);
+void chutaCifra12Textos(ColecaoFrequencias colecao);
+void cravaMapeamento(ColecaoFrequencias colecao);
 
 #endif

@@ -60,7 +60,9 @@ void menu(){
             // criaListaFrequencia(lista2);
             // leArquivoFrequencia(lista2);
             // imprimeLetrasEfrequencia(lista2);
-            chutaCifra(colecao);
+            // chutaCifraTexto(colecao);
+            // chutaCifra12Textos(colecao);
+            cravaMapeamento(colecao);
             break;
         }
         case 3:{
