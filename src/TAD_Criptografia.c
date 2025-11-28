@@ -100,4 +100,38 @@ void alterarChave(criptografia *cripto, char original, char encriptada) {
         }
     }
 }
+void exportarResultado(criptografia *cripto) {
+    char nomeArquivo[256];
+
+    printf("Digite o caminho e nome do arquivo para salvar a chave:\n> ");
+    scanf("%255s", nomeArquivo);
+
+    FILE *file = fopen(nomeArquivo, "w");
+    if (!file) {
+        printf("Erro ao criar arquivo! operacao cancelada.\n");
+        return;
+    }
+
+    fprintf(file, "Chave de Criptografia Final:\n\n");
+
+    fprintf(file, "Original: ");
+    for (int i = 0; i < 26; i++) {
+        fprintf(file, "%c", cripto->Chaves.normal[i]);
+    }
+    fprintf(file, "\n");
+
+    fprintf(file, "Cifrado : ");
+    for (int i = 0; i < 26; i++) {
+        fprintf(file, "%c", cripto->Chaves.cifra[i]);
+    }
+    fprintf(file, "\n\n");
+
+    fprintf(file, "Texto parcialmente decifrado:\n");
+    fprintf(file, "%s\n", cripto->parcial);
+
+    fclose(file);
+
+    printf("\nArquivo salvo com sucesso em '%s'.\n", nomeArquivo);
+    printf("Encerrando o programa...\n");
+}
 

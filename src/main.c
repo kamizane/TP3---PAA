@@ -98,7 +98,7 @@ void menu(){
             alterarChave(&teste, original, encriptada);
             break;
         case 6:
-            printf("Exportanto resultados e fechando programa...\n");
+            exportarResultado(&teste);
             flag =0;
             return;
         
