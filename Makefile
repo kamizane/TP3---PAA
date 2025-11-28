@@ -21,12 +21,14 @@ OBJ = $(SRC:src/%.c=$(BUILD)/%.o)
 ifeq ($(OS),Windows_NT)
     EXEC = main.exe
     MKDIR = if not exist "$(BUILD)" mkdir "$(BUILD)"
-    RM = del /Q
+    RM_FILE = del /Q /F
+    RM_DIR = rmdir /S /Q
     RUN_CMD = .\$(EXEC)
 else
     EXEC = main
     MKDIR = mkdir -p $(BUILD)
-    RM = rm -f
+    RM_FILE = rm -f
+    RM_DIR = rm -rf
     RUN_CMD = ./$(EXEC)
 endif
 
@@ -43,8 +45,9 @@ $(BUILD)/%.o: src/%.c
 
 # Limpeza
 clean:
-	$(RM) $(BUILD)/* 
-	$(RM) $(EXEC)
+	-$(RM_FILE) $(BUILD)/* 2> NUL
+	-$(RM_DIR) $(BUILD) 2> NUL
+	-$(RM_FILE) $(EXEC) 2> NUL
 
 # Executa
 run: all
