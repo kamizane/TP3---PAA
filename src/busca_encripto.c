@@ -3,7 +3,7 @@
 #include "../include/TAD_Ocorrencias.h"
 
 void shift(int vetor[], int tamanho){
-    for(int i = tamanho;  i>0; i--){
+    for(int i = tamanho - 1;  i>0; i--){
         vetor[i] = vetor[i-1];
     }
     vetor[0] = 0;
@@ -18,6 +18,9 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
     int infos = -1;
     char M[tamanhoPadrao][tamanhoPadrao+1];
     Ocorrencias ocorrencias[maxOperacoes+1];
+    int R[maxOperacoes+1][tamanhoPadrao];
+    int Rlinha[maxOperacoes+1][tamanhoPadrao];
+
 
     for(int i = 0; i<=maxOperacoes;i++){
         inicializaListaVazia(&ocorrencias[i]);
@@ -26,13 +29,13 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
     printf("Gostaria de visualizar, alem das ocorrencias, as tabelas do shift-and? entradas aceitas:(s/n) \n");
     while(infos<0){
         char entrada;
-        scanf("%c", &entrada);
+        scanf(" %c", &entrada);
         if(entrada == 's'){
             infos = 1;
         }else if(entrada == 'n'){
             infos = 0;
         }else{
-            printf("Entrada inválida, tente novamente!\n");
+            printf("Entrada invalida, tente novamente!\n");
         }
         printf("\n");
     }
@@ -65,12 +68,8 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
         }
     }
 
-
-    //gerando R
+    //iniciando R
     
-    int R[maxOperacoes+1][tamanhoPadrao];
-    int Rlinha[maxOperacoes+1][tamanhoPadrao];
-
     for(int i = 0; i<=maxOperacoes; i++){
         for(int j = 0; j<tamanhoPadrao; j++){
             R[i][j] = 0;
