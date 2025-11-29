@@ -18,6 +18,9 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
     int infos = -1;
     char M[tamanhoPadrao][tamanhoPadrao+1];
     Ocorrencias ocorrencias[maxOperacoes+1];
+    int R[maxOperacoes+1][tamanhoPadrao];
+    int Rlinha[maxOperacoes+1][tamanhoPadrao];
+
 
     for(int i = 0; i<=maxOperacoes;i++){
         inicializaListaVazia(&ocorrencias[i]);
@@ -65,12 +68,8 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
         }
     }
 
-
-    //gerando R
+    //iniciando R
     
-    int R[maxOperacoes+1][tamanhoPadrao];
-    int Rlinha[maxOperacoes+1][tamanhoPadrao];
-
     for(int i = 0; i<=maxOperacoes; i++){
         for(int j = 0; j<tamanhoPadrao; j++){
             R[i][j] = 0;
