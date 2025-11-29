@@ -42,7 +42,11 @@ char* lerEntrada(int flag) {
         while(1) {
             printf("Digite o caminho para o arquivo (0 para sair):\n");
         
-            scanf("%255s", nome);
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            fgets(nome, sizeof(nome), stdin);
+            nome[strcspn(nome, "\n")] = 0;  // remove o \n lido pelo fgets
+
 
             if(strcmp(nome, "0") == 0) {
                 printf("Saindo...\n");
