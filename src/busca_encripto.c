@@ -3,7 +3,7 @@
 #include "../include/TAD_Ocorrencias.h"
 
 void shift(int vetor[], int tamanho){
-    for(int i = tamanho;  i>0; i--){
+    for(int i = tamanho - 1;  i>0; i--){
         vetor[i] = vetor[i-1];
     }
     vetor[0] = 0;
@@ -29,13 +29,13 @@ void casamentoAproximado(int maxOperacoes, char texto[], char padrao[]){
     printf("Gostaria de visualizar, alem das ocorrencias, as tabelas do shift-and? entradas aceitas:(s/n) \n");
     while(infos<0){
         char entrada;
-        scanf("%c", &entrada);
+        scanf(" %c", &entrada);
         if(entrada == 's'){
             infos = 1;
         }else if(entrada == 'n'){
             infos = 0;
         }else{
-            printf("Entrada inválida, tente novamente!\n");
+            printf("Entrada invalida, tente novamente!\n");
         }
         printf("\n");
     }
